@@ -164,6 +164,13 @@ Hellanzb.GROWL_PASSWORD = 'password'
 Hellanzb.LIBNOTIFY_NOTIFY = False
 
 
+# Enable KDE KDIALOG notifications
+Hellanzb.KDIALOG_NOTIFY = False
+
+# How long should the KDIALOG notify be shown for?
+Hellanzb.KDIALOG_NOTIFY_TIME = 5
+
+
 # Disable ANSI color codes in the main screen (preserves the in place scroller)
 #Hellanzb.DISABLE_COLORS = False
 

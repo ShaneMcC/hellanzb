@@ -121,7 +121,7 @@ def kdialogNotify(type, title, description, sticky = False):
     if not Hellanzb.KDIALOG_NOTIFY:
         return
 
-    os.system('kdialog --title "hellanzb - ' + title + '" --passivepopup "' + description + '" ' + Hellanzb.KDIALOG_NOTIFY_TIME);
+    os.system('kdialog --title "hellanzb - ' + title + '" --passivepopup "' + description + '" ' + str(Hellanzb.KDIALOG_NOTIFY_TIME));
 
 def growlNotify(type, title, description, sticky = False):
     """ send a message to the remote growl daemon via udp """

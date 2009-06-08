@@ -366,10 +366,9 @@ def init(options = {}):
 
     if not hasattr(Hellanzb, 'KDIALOG_NOTIFY'):
         Hellanzb.KDIALOG_NOTIFY = False
-				
-    if not hasattr(Hellanzb, 'KDIALOG_NOTIFY_TIME'):
-        Hellanzb.KDIALOG_NOTIFY_TIME = 5 
 
+    if not hasattr(Hellanzb, 'KDIALOG_NOTIFY_TIME'):
+        Hellanzb.KDIALOG_NOTIFY_TIME = 5
 
     if not hasattr(Hellanzb, 'LIBNOTIFY_NOTIFY'):
         Hellanzb.LIBNOTIFY_NOTIFY = False
