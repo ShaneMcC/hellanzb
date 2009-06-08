@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 """
 
 Log - The basic log API functions, only -- to discourage polluting namespaces, e.g.:
@@ -25,6 +25,7 @@ from Hellanzb.Logging import LogOutputStream, lockScrollableHandlers, prettyExce
 from Hellanzb.Growl import *
 from Hellanzb.Util import getLocalClassName, toUnicode, FatalError
 from StringIO import StringIO
+import os
 
 __id__ = '$Id$'
 
@@ -100,6 +101,7 @@ def notify(type, title, description, sticky = False):
     """ send the notification message to both Growl and LibNotify Daemon """
     growlNotify(type, title, description, sticky)
     libnotifyNotify(type, title, description, sticky)
+    kdialogNotify(type, title, description, sticky)
 
 def libnotifyNotify(type, title, description, sticky = False):
     """ send a message to libnotify daemon """
@@ -113,6 +115,13 @@ def libnotifyNotify(type, title, description, sticky = False):
 
     if not n.show():
         debug('Failed to send libnotify notification')
+
+def kdialogNotify(type, title, description, sticky = False):
+    """ send a message to kdialog daemon """
+    if not Hellanzb.KDIALOG_NOTIFY:
+        return
+
+    os.system('kdialog --title "hellanzb - ' + title + '" --passivepopup "' + description + '" ' + Hellanzb.KDIALOG_NOTIFY_TIME);
 
 def growlNotify(type, title, description, sticky = False):
     """ send a message to the remote growl daemon via udp """
@@ -142,7 +151,7 @@ def growlNotify(type, title, description, sticky = False):
     # Unicode the message, so the python Growl lib can succesfully UTF-8 it. It can fail
     # to UTF-8 the description if it contains unusual characters. we also have to force
     # latin-1, otherwise converting to unicode can fail too
-    # (e.g. 'S�£o_Paulo')
+    # (e.g. 'S�£o_Paulo')
     description = toUnicode(description)
     
     p = GrowlNotificationPacket(application="hellanzb",

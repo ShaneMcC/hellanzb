@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 
 Core - All of our main()ish functions. Initialization/shutdown/etc
@@ -362,6 +363,13 @@ def init(options = {}):
         except ValueError:
             error('Config file option: Hellanzb.UMASK is not a valid integer')
             sys.exit(1)
+
+    if not hasattr(Hellanzb, 'KDIALOG_NOTIFY'):
+        Hellanzb.KDIALOG_NOTIFY = False
+				
+    if not hasattr(Hellanzb, 'KDIALOG_NOTIFY_TIME'):
+        Hellanzb.KDIALOG_NOTIFY_TIME = 5 
+
 
     if not hasattr(Hellanzb, 'LIBNOTIFY_NOTIFY'):
         Hellanzb.LIBNOTIFY_NOTIFY = False
